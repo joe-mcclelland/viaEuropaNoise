@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="keywords" content="map scotlands noise">
+    <title>Map | Scotland's Noise Map</title>
+
+    <!-- FavIcon -->
+    <link rel="icon" sizes="192x192" href="https://beta.environment.gov.scot/media/1101/android-icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://beta.environment.gov.scot/media/1106/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://beta.environment.gov.scot/media/1107/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://beta.environment.gov.scot/media/1108/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://beta.environment.gov.scot/media/1109/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://beta.environment.gov.scot/media/1110/apple-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://beta.environment.gov.scot/media/1102/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://beta.environment.gov.scot/media/1103/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://beta.environment.gov.scot/media/1104/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://beta.environment.gov.scot/media/1105/apple-icon-76x76.png">
+    <link rel="icon" sizes="16x16" href="https://beta.environment.gov.scot/media/1112/favicon-16x16.png">
+    <link rel="icon" sizes="32x32" href="https://beta.environment.gov.scot/media/1113/favicon-32x32.png">
+    <link rel="icon" sizes="96x96" href="https://beta.environment.gov.scot/media/1114/favicon-96x96.png">
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" href="css/foundation.contextMenu.css" />
+    <link rel="stylesheet" href="css/pagelayout.css" />
+
+    <style type="text/css">
+        .popout {
+            position: absolute;
+            z-index: 60;
+        }
+
+        .popin {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="some-element"></div>
+    <div class="loaderModal">
+        <div class="outer">
+            <div class="middle">
+                <div class="inner">
+                    <div class="loader"></div>
+                    Loading...
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page_wrapper">
+        <div class="expanded row sepa_header">
+            <div class="column">
+                <div class="title-bar" data-responsive-toggle="eMenu" data-hide-for="large">
+                    <button class="menu-icon" type="button" data-toggle></button>
+                    <div class="title-bar-title">NAVIGATION</div>
+                </div>
+                <div class="top-bar" id="eMenu">
+                    <div class="top-bar-left">
+                        <ul id="myMenuId" class="dropdown vertical large-horizontal menu" data-responsive-menu="drilldown large-dropdown">
+                            <li><a href="https://noise.environment.gov.scot/index.html"><i class="fa fa-home fa-x" aria-hidden="true"></i> Home</a></li>
+                            <li><a href="https://noise.environment.gov.scot/noisemap">Noise map</a></li>
+                            <li><a href="https://noise.environment.gov.scot/noise-statistics.html">Noise statistics</a></li>
+                            <li><a href="https://noise.environment.gov.scot/action-planning.html">Action planning</a></li>
+                            <li><a href="https://noise.environment.gov.scot/glossary.html">Glossary</a></li>
+                            <li><a href="https://noise.environment.gov.scot/frequently-asked-questions.html">FAQ</a></li>
+                            <li><a href="https://noise.environment.gov.scot/contributors.html">Contributors</a></li>
+                            <li><a href="https://noise.environment.gov.scot/links.html">Links</a></li>
+                            <li><a href="https://noise.environment.gov.scot/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="left_search" class="small-11 medium-6 large-4 columns column_thin left_search" data-toggler data-animate="slide-in-left" data-closable="slide-out-left">
+            <div class="row">
+                <button class="close-button" aria-label="Dismiss alert" id="btn_search_close" type="button" data-close>
+                    <span aria-hidden="true"><i class="fa fa-angle-double-left fa-lg"></i></span>
+                </button>
+            </div>
+            <div class="row column column_thin" id="left_search_header">
+                <div><h3>Search results</h3></div>
+            </div>
+            <div class="row column column_thin query_results" id="toc_row2">No results</div>
+        </div>
+        <div class="expanded row">
+            <div id="left_nav" class="small-11 medium-6 large-4 column small-collapse  left_nav popin" data-toggler data-animate="slide-in-left" data-closable="slide-out-left">
+                <div class="row">
+                    <button class="close-button content_pin" aria-label="Dismiss alert" id="btn_contents_pop" type="button">
+                        <!--<span aria-hidden="true"><i class="fa fa-thumb-tack fa-lg"></i></span>-->
+						<span aria-hidden="true"><i class="fa fa-angle-double-left fa-lg"></i></span>
+                    </button>
+                    <button class="close-button content_close" aria-label="Dismiss alert" id="btn_contents_close" type="button" data-close>
+                        <span aria-hidden="true"><i class="fa fa-angle-double-left fa-lg"></i></span>
+                    </button>
+                </div>
+                <div class="row column column_thin" id="left_nav_header">
+                    <div><h2>Map contents</h2></div>
+                </div>
+                <div class="expanded row column column_thin" id="toc_row">
+                    <ul class="tabs" data-tabs id="sepa-tabs">
+                        <li class="tabs-title is-active"> <a href="#panel1" class="panel1" id="mnuMapAbout" aria-selected="true">About</a></li>
+                        <li class="tabs-title"> <a href="#panel2" class="panel2" id="mnuMapLayers">Data</a></li>
+                        <li class="tabs-title"> <a href="#panel3" class="panel3" id="mnuMapLegend">Legend</a></li>
+                        <li class="tabs-title"> <a href="#panel4" class="panel4" id="mnuMapBackground">Base map</a></li>
+                    </ul>
+                    <div class="tabs-content left_nav_tabs-content" data-tabs-content="sepa-tabs">
+                        <div class="tabs-panel is-active" id="panel1">
+                            <div class="about_header">
+                                <div class="expanded row column">
+                                    <div class="small-collapse about_welcome">
+                                        <div class="expanded row column">
+                                            <img src="img/Scotlands-Noise-Logo.png" /></div>
+                                        <div class="expanded row column">
+                                            <img src="img/part-of-SEWeb-Logo.png" /></div>
+                                        <h5>Welcome to Scotland's Noise Map</h5>
+                                        <p>The Map contains data for rounds 2 and 3</p>
+                                    </div>
+                                </div>
+                                <button class="small button btnTour_Content" id="btnTour_Content" aria-label="Dismiss alert" type="button">
+                                    <span aria-hidden="true"><i class="fa fa-map-o fa-lg"></i> Learn more about the map</span>
+                                    <br />
+                                    <span>START THE TOUR</span>
+                                </button>
+                                <button class="small button btnAdd_Content" id="btnAdd_Content" aria-label="Dismiss alert" type="button">
+                                    <span aria-hidden="true"><i class="fa fa-filter fa-lg"></i> Filter Data</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tabs-panel" id="panel2">
+                            <div class="tableofcontents_header">
+                                <!--<div class="expanded row column"><div class="tableofcontents_header_desc text-center">Define a search area by selecting one of the options below.</div></div>
+                                <div class="expanded button-group small">
+                                    <button class="button drawbutton " style="white-space:nowrap;"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Point</button>
+                                    <button class="button drawbutton " style="white-space:nowrap;"><i class="fa fa-pencil" aria-hidden="true"></i> Polyline</button>
+                                    <button class="button drawbutton " style="white-space:nowrap;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Polygon</button>
+                                    <button class="button drawbutton " style="white-space:nowrap;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Rectangle</button>
+                                    <button class="secondary button" id="btn_clearMap" style="white-space:nowrap;"><i class="fa fa-eraser" aria-hidden="true"></i> Clear</button>
+                                </div>-->
+
+                            </div>
+                            <div class="expanded row column tableofcontents">
+                                <div class="column tableofcontents_content">
+                                    <div class="expanded row columns">
+                                        <!--<div class="input-group">
+                                            <span class="input-group-label">Select Measurement Cycle</span>
+                                            <select class="input-group-field select_filter_single" id="studyRound" style="">
+                                                <option value="2">Round 2</option>
+                                                <option value="3">Round 3</option>
+                                            </select>
+                                        </div>-->
+                                        <label>
+                                            <span>Select Measurement Cycle</span>
+                                            <select class="studyRound" id="studyRound" style="" size="2">
+                                                <option value="2">Round 2</option>
+                                                <option value="3" selected>Round 3</option>
+                                            </select>
+                                        </label>
+                                        <fieldset class="column select_filter_fieldset fieldset" style="">
+                                            <legend>Select filter preference</legend>
+                                            <input type="radio" name="source" value="Area" id="rd_area" required class="radAreaSource"><label for="rd_area" style="margin:0rem;padding:0.2rem;">Area</label>
+                                            <input type="radio" name="source" value="Source" id="rd_source" class="radAreaSource"><label for="rd_source" style="margin:0rem;padding:0.2rem;">Source</label>
+                                        </fieldset>
+                                        <label id="lbl_1" style="display:none;">
+                                            <span id="fo_1">Data Selection </span>
+                                            <!--<select id="sel_1" multiple class="select_filter_multiple" ></select>-->
+                                            <!--<select id="sel_1" class="select_filter_multiple" size="5"></select>-->
+                                            <select id="sel_1" class="sel_1" size="5"></select>
+                                        </label>
+                                        <label id="lbl_2" style="display:none;">
+                                            <span id="fo_2">Data Selection </span>
+                                            <!--<select id="sel_2" multiple class="select_filter_multiple"></select>-->
+                                            <select id="sel_2" class="sel_2" size="5"></select>
+                                        </label>
+                                        <label id="lbl_3" style="display:none;">
+                                            Data Selection
+                                            <!--<select id="sel_3" multiple class="select_filter_multiple"></select>-->
+                                            <select id="sel_3" class="sel_3" size="3"></select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabs-panel" id="panel3">
+                            <div id="legendDiv"></div>
+                        </div>
+                        <div class="tabs-panel" id="panel4">
+                            <ul class="no-bullet">
+                                <li><button id="bg_Standard" title="Standard Map" class="small button bg_button"><img src="img/menu/Standard_test.png" />Standard</button></li>
+                                <li><button id="bg_Colour" title="Colour" class="small button bg_button"><img src="img/menu/Colour_test.png" />Colour</button></li>
+                                <li><button id="bg_Grey" title="Greyscale" class="small button bg_button"><img src="img/menu/GreyScale_test.png" />Greyscale</button></li>
+                                <li><button id="bg_Aerial" title="Aerial Photography" class="small button bg_button"><img src="" id="bg_Selector" class="bg_Selector" title="Aerial Photography" />Aerial photography<span class="aerial_message"> (Zoom in to view)</span></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mapDiv" class="small-12 medium-6 large-8 column small-collapse column_fullheight">
+                <div class="btnMapContentShow">
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-toggle="left_nav">
+                        <span aria-hidden="true"><i class="fa fa-angle-double-right fa-lg"></i></span>
+                    </button>
+                </div>
+                <div class="center_search_wrapper">
+                    <div id="center_search" class="small-10 medium-10 large-6 large-up-3 small-centered  columns center_search">
+                        <div class="input-group">
+                            <div class="input-group-button" style="border-radius:5px 0px 0px 0px;">
+                                <button id="btnMenu" data-toggle="left_search" type="button" class="button  seweb_green rounded_left_side"><i class="fa fa-eye"></i></button>
+                            </div>
+                            <input class="input-group-field" type="text" id="txtsearch" placeholder="e.g. postcode, NRG, town or settlement">
+                            <div class="input-group-button">
+                                <button id="btnSearch" title="Search" data-toggle="left_search" type="button" class="rounded_right_side button seweb_green" style="border-radius:0px 3px 3px 0px;"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="loadingImg" class="loadingImg">
+                    <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="map_icon_wrapper">
+                    <!--<button type="button" class="tiny button ui-toolbox-button"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>-->
+                    <div class="map_icon_tools">
+                        <button title="Zoom to Scotland" type="button" class="button ui-home-button"><i class="fa fa-home"></i></button>
+                        <button id="" title="Find my Location" type="button" class="ui-button ui-locate-button button" style=""><i class="fa fa-map-marker"></i></button>
+                        <button id="" title="Transparency Slider" type="button" class="ui-button ui-opacity-button button" style="" data-toggle="transparency_slider_container"><i class="fa fa-adjust "></i></button>
+                        <!--<button id="" title="Create URL" type="button" class="ui-button ui-createurl-button button" style=""><i class="fa fa-bookmark"></i></button>-->
+                    </div>
+                </div>
+                <div class='Scalebar_wrapper'></div>
+            </div>
+        </div>
+        <div class="expanded row column sepa_usermessage" data-toggler data-animate="slide-in-down" data-closable="slide-out-down">
+            <p class="text-center" id="user_message"></p>
+            <button class="close-button" aria-label="Dismiss alert" id="userMessageClose" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="expanded row sepa_footer">
+            <div class="expanded row copyright">
+                <div class="small-12 column">
+                    © Crown Copyright. Scottish Government Licence Number 100020540. All Rights Reserved.
+					<span class="" style="float:right;" id="plcScaleMap"></span>
+                </div>
+            </div>
+        </div>
+        <div class="expanded row column transparency_slider_container" id="transparency_slider_container" data-toggler data-animate="slide-in-left" data-closable="slide-out-left">
+            <div class="small-11 medium-6 small-centered columns transparency_slider">
+                <div class="row">
+                    <button class="close-button" id="btnOpacityClose" aria-label="Close Transparency Slider" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="small-9 columns">
+                        <div class="slider" id="sliderOpacity" data-slider data-initial-start="75" data-step="5">
+                            <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput1"></span>
+                            <span class="slider-fill" data-slider-fill></span>
+                        </div>
+                    </div>
+                    <div class="small-3 columns">
+                        <input class="input-group-field" id="sliderOutput1" type="hidden" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="large reveal" id="modalViewIdentifyResults" aria-labelledby="modalViewIdentifyResultsHeader1" data-reveal>
+        <div class="expanded row">
+            <button class="close-button" aria-label="Close Accessible Modal" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="expanded row" id="identify_header">
+            <div class="columns">
+                <h5 id="modalViewIdentifyResultsHeader1">Identify results</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns identifyResults_wrapper"> </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/xml2json.js"></script>
+    <!--Foundation Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+    <!--<script src="js/vendor/foundation.contextMenu.js"></script>-->
+
+    <!--Font Awesome Scripts-->
+    <script src="https://use.fontawesome.com/26ae48432e.js"></script>
+
+    <!--ESRI Scripts-->
+    <script src="https://js.arcgis.com/3.20compact/"></script>
+
+    <script src="js/map/params.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/Search.js"></script>
+    <script src="js/map/SEPA_Background_Layers.js"></script>
+    <script src="js/map/map.js"></script>
+    <script src="js/vendor/Convert_Coords.js"></script>
+    <script src="js/GeoLocate.js"></script>
+    <script src="js/drilldown_search.js"></script>
+		<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-26601593-10', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

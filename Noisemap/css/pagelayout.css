@@ -1,0 +1,969 @@
+﻿html {
+	position: relative;
+	min-height: 100%;
+	box-sizing: border-box;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%
+}
+body {
+	background-color: #ffffff;
+	color: #333;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+	font-size:  0.875rem;
+	line-height: 21px;
+	margin: 0;
+	padding: 0;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+
+.loaderModal {
+	position: fixed;
+	top: 0rem;
+	left: 0rem;
+	height: 100%;
+	width: 100%;
+	background-color: #FFFFFF;
+	overflow: hidden;
+	z-index: 100;
+	text-align: center;
+	vertical-align: middle;
+}
+.outer {
+	display: table;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+.middle {
+	display: table-cell;
+	vertical-align: middle;
+}
+.inner {
+	margin-left: auto;
+	margin-right: auto;
+ 	width: /*whatever width you want*/;
+}
+.loader {
+	margin-left: auto;
+	margin-right: auto;
+	border: 10px solid #f3f3f3; /* Light grey */
+	border-top: 10px solid #3498db; /* Blue */
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 2s linear infinite;
+}
+@keyframes spin {
+0% {
+ transform: rotate(0deg);
+}
+100% {
+ transform: rotate(360deg);
+}
+}
+html, body, #mapDiv {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#mapDiv {
+}
+.center_search_wrapper {
+	position: relative;
+	top: 0px;
+	text-align: center;
+	z-index: 30;
+	height: 0rem;
+	margin-top: 0rem;
+	float: left;
+}
+.center_search {
+}
+.input-group {
+	margin-bottom: 0.3rem;
+}
+.input-group-field {
+	height: 2.2rem;
+}
+.input-group-button a, .input-group-button button, .input-group-button input, .input-group-button label {
+	height: 2.2rem;
+}
+.map_icon_wrapper {
+	float: right;
+    height: 0rem;
+    position: relative;
+    right: 13px;
+    text-align: right;
+    top: 0;
+    width: 2.9rem;
+    z-index: 30;
+}
+.map_icon_wrapper button {
+	border-radius: 3px;
+	margin-right: 0.2rem;
+	margin-bottom: 0.2rem;
+	width: 2.75rem;
+	padding: 0.5em 0.85em;
+}
+.map_icon_tools {
+	display: block;
+}
+.rounded_all {
+	border-radius: 3px 3px 3px 3px;
+}
+.rounded_left_top {
+	border-radius: 3px 0px 0px 0px;
+}
+.rounded_rigt_top {
+	border-radius: 0px 3px 0px 0px;
+}
+.rounded_rigt_bottom {
+	border-radius: 0px 0px 3px 0px;
+}
+.rounded_left_bottom {
+	border-radius: 0px 0px 0px 3px;
+}
+.rounded_left_side {
+	border-radius: 3px 0px 0px 3px;
+}
+.rounded_right_side {
+	border-radius: 0px 3px 3px 0px;
+}
+.rounded_top {
+	border-radius: 3px 3px 0px 0px;
+}
+.rounded_bottom {
+	border-radius: 0px 0px 3px 3px;
+}
+.seweb_green {
+	background-color: #8cc543;
+	color: #fefefe;
+}
+.button.seweb_green {
+	background-color: #8cc543;
+	color: #fefefe;
+}
+.button.seweb_green:hover, .button.seweb_green:focus {
+	background-color: #7bb036;
+	color: #fefefe;
+}
+.page_wrapper {
+	position: fixed;
+	top: 0rem;
+	left: 0rem;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+}
+.row_fullheight {
+	height: 100%;
+}
+.column_fullheight {
+	height: 100%;
+}
+.left_nav {
+	background-color: #ffffff;
+    border-right: 1px solid #e8e8e8;
+    height: 100%;
+    left: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    position: relative;
+    top: 0;
+}
+.fa-rotate-45 {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.column_thin {
+}
+.search_tabs .tabs {
+	border: 0px;
+}
+.search_tabs .tabs-title a {
+	padding: 0.75rem;
+	color: #044269;
+	background-color: #e6e6e6;
+	border-top: solid 1px #808080;
+	border-right: solid 1px #808080;
+	border-top-right-radius: 1em;
+	border-top-left-radius: 0.3em;
+}
+.search_tabs .tabs-title .is-active.tabs-title > a:focus, .search_tabs .tabs-title > a[aria-selected="true"] {
+	background-color: #044269;
+	color: #FFFFFF;
+}
+.search_tabs .tabs-panel {
+	border-top: solid 1px #e6e6e6;
+	padding: 0.1rem 0.3rem;
+}
+.search_tabs .tabs-content, .search_tabs label {
+	background-color: #f8f8f8;
+	color: #044269;
+}
+.search_tabs .tabs-panel {
+	padding: 0.75rem 0.5rem;
+}
+.left_nav .tabs {
+	border: 0px;
+}
+.left_nav .tabs-title a {
+	background-color: #e6e6e6;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 1em;
+    color: #044269;
+    padding: 0.75rem;
+}
+.left_nav .tabs-title .is-active.tabs-title > a:focus, .left_nav .tabs-title > a[aria-selected="true"] {
+	background-color: #1779ba;
+	color: #fff;
+}
+.left_nav .tabs-panel {
+	border-top: 0 solid #e6e6e6;
+	padding: 0.1rem 0.3rem;
+}
+.left_nav #panel4 {
+	padding-top: 1rem;
+	text-align: center;
+}
+.left_nav #legendDiv {
+	background-color: #fff;
+    color: #333;
+    overflow: auto;
+    padding: 10px;
+}
+
+.esriLegendService table {
+    margin-bottom: 0rem;
+    border-collapse:separate;
+}
+.esriLegendService table tbody th, .esriLegendService table tbody td {
+    padding: 0rem;
+}
+.esriLegendService table tbody tr:nth-child(2n) {
+    background-color: #FFFFFF;
+}
+
+.left_nav .tabs-content {
+	background-color: #055385;
+}
+.bg_button {
+	margin-top: 5px;
+    text-align: left;
+    vertical-align: middle;
+    width: 95%;
+}
+.fa{
+    font-size:1rem;
+	cursor: pointer;
+}
+.content_pin {
+	font-size: 1.2rem;
+    right: 3.5rem;
+    top: 0.9rem;
+    z-index: 40;
+}
+.content_close {
+	right: 1rem;
+	display: none;
+}
+.bg_button img {
+	border: 1px solid #909090;
+    border-radius: 5px;
+    margin-right: 0.8rem;
+    text-align: left;
+    vertical-align: middle;
+}
+.tableofcontents {
+	overflow-y: auto;
+	background-color: #055385;
+    color:#ffffff;
+	display: block;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+    font-size: .875rem;
+
+}
+.tableofcontents span{
+    background-color:#055385;
+    color:#FFFFFF;
+}
+.tableofcontents .fieldset legend {
+    background: #055385 none repeat scroll 0 0;
+}
+
+.tableofcontents select {font-size: 0.875rem;}
+/*****************************************************************/
+/* Small only */
+@media screen and (max-width: 39.9375em) {
+    .fieldset {
+        padding: 0.25rem;
+        margin: 0.25rem 0;
+    }
+    .studyRound,.sel_1,.sel_2,.sel_3 {
+        height:1.4rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:1.5rem;
+        padding-bottom:0rem;
+    }
+
+    .tableofcontents{
+        /*margin-top:0.1rem;
+        padding:0.3rem;*/
+    }
+    .tabs-panel{
+        padding:0.1rem 0.1rem;
+    }
+
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+    .fieldset {
+        padding: 0.75rem;
+        margin: 0.75rem 0;
+    }
+    .studyRound {
+        height:2.2rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:1.5rem;
+        padding-bottom:0rem;
+    }
+    .sel_1, .sel_2  {
+        height:5.6rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+    .sel_3 {
+        height:3.2rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+    .tableofcontents{
+        /*margin-top:0.2rem;
+        padding:1rem;*/
+    }
+    .tabs-panel{
+        padding:0.1rem 0.2rem;
+    }
+}
+
+/* Medium only */
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    .fieldset {
+        padding: 0.25rem;
+        margin: 0.25rem 0;
+    }
+    .studyRound{
+        height:2.2rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+        .sel_1, .sel_2  {
+        height:5.6rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+    .sel_3 {
+        height:3.2rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+    .tableofcontents{
+        /*margin-top:0.2rem;
+        padding:1rem;*/
+    }
+    .tabs-panel{
+        padding:0.1rem 0.2rem;
+    }
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+    .fieldset {
+        padding: 1.25rem;
+        margin: 1.25rem 0;
+    }
+    .studyRound {
+        height:2.6rem;
+        padding-left:0.2rem;
+        padding-top:0.2rem;
+        padding-right:0.2rem;
+        padding-bottom:0.2rem;
+    }
+    .sel_1, .sel_2  {
+        height:7.6rem;
+        padding-left:0.2rem;
+        padding-top:0.2rem;
+        padding-right:0.2rem;
+        padding-bottom:0.2rem;
+    }
+    .sel_3 {
+        height:3.6rem;
+        padding-left:0.2rem;
+        padding-top:0.2rem;
+        padding-right:0.2rem;
+        padding-bottom:0.2rem;
+    }
+    .tableofcontents{
+        /*margin-top:0.5rem;
+        padding:1.5rem;*/
+    }
+    .tabs-panel{
+        padding:0.1rem 0.2rem;
+    }
+}
+
+/* Large only */
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+    .fieldset {
+        padding: 1.25rem;
+        margin: 1.25rem 0;
+    }
+    .studyRound {
+        height:2.2rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:1.5rem;
+        padding-bottom:0rem;
+    }
+    .sel_1, .sel_2  {
+        height:5.6rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+    .sel_3 {
+        height:3.2rem;
+        padding-left:0.2rem;
+        padding-top:0rem;
+        padding-right:0.2rem;
+        padding-bottom:0rem;
+    }
+    .tableofcontents{
+        /*margin-top:0.5rem;
+        padding:1.5rem;*/
+    }
+    .tabs-panel{
+        padding:0.1rem 0.2rem;
+    }
+}
+/*****************************************************************/
+.tableofcontents label{color:#FFFFFF;}
+.tableofcontents_header {
+	background-color: #055385;
+	padding: 0.2rem 0rem;
+    display:none;
+}
+.tableofcontents_header_desc{
+    /*background-color: #8cc543;
+    color:#333;*/
+    color:#ffffff;
+	padding: 0.2rem 0rem;
+}
+
+.tableofcontents_header .button-group {
+	margin-bottom: 0rem;
+}
+
+.tableofcontents table{border:solid 1px #808080;}
+
+.tableofcontents table tbody td,.tableofcontents  table tbody th {
+    padding: 0rem 0 0;
+}
+.tableofcontents th{
+    text-align:left;
+}
+.layerResultHeader{
+    background-color:#055385;
+    color:#ffffff;
+    padding:0.3rem;
+    cursor:pointer;
+}
+.layerResultbody{
+    display:none;
+}
+
+select, textarea {
+    margin:0;
+}
+.button{margin-bottom:0rem;margin-top:0.3rem;}
+hr{margin:0.5rem;}
+
+.about_header {
+	text-align: center;
+}
+.about_welcome {
+	color: #ffffff;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+.about_welcome h5, .about_welcome p {
+	text-align: center;
+}
+.small-collapse.about_welcome .expanded.row.column img {
+	margin-bottom: 10px;
+}
+.btnTour_Content, .btnAdd_Content {
+	margin-bottom: 0.5rem;
+    width: 90%;
+}
+
+.scale_error {
+	background-color: #e6e6e6;
+}
+.scale_issue {
+	background-color: #ff6a00;
+}
+
+.btnMenu_wrapper {
+}
+.btnMapContentShow {
+	position: relative;
+	top: 0rem;
+	left: 0rem;
+	z-index: 40;
+	display: none;
+	width: 3.0rem;
+}
+
+.btnMapContentShow button {
+	background-color: #ffffff;
+	height: 2.3rem;
+	width: 2rem;
+	top: 0.2rem;
+	border-top: solid 1px #808080;
+	border-right: solid 1px #808080;
+	border-bottom: solid 1px #808080;
+}
+
+.left_search {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 50;
+	height: 100%;
+	background-color: #FFFFFF;
+	border-right: solid 1px #c6c6c6;
+	display: none;
+}
+btnSearch {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.query_results {
+	overflow-y: auto;
+	font-size: 90%;
+}
+.div_spinner {
+	margin-left: auto;
+	margin-right: auto;
+	width: 2.3rem;
+	height: 2.6rem;
+	z-index: 40;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 0.2rem;
+	background-color: #FFFFFF;
+	color: #2199e8;
+	border-radius: 5px;
+}
+@media screen and (max-width: 39.9375em) {
+#some-element {
+	display: none;
+}
+}
+@media screen and (min-width: 40em) {
+#some-element {
+	display: inline-block;
+}
+}
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+#some-element {
+	display: inline-block;
+}
+}
+@media screen and (min-width: 64em) {
+#some-element {
+	display: inline-block;
+}
+}
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+#some-element {
+	display: inline-block;
+}
+}
+.loadingImg {
+	position: absolute;
+	top: 11rem;
+	right: 30%;
+	/*width: 2.3rem;
+	height: 2.3rem;*/
+	z-index: 40;
+	border: solid #57585A 0.0625em;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 0.2rem;
+	background-color: #FFFFFF;
+	color: #2199e8;
+	border-radius: 5px;
+	display: none;
+}
+.sepa_header {
+	background-color: #044269;
+	border-bottom: 1px solid #333;
+    box-shadow: 0 5px 5px -5px #333;
+}
+.sepa_header_menu {
+	background-color: #044269;
+}
+.no-js .top-bar {
+	display: none;
+}
+.no-js .title-bar {
+	display: none;
+}
+ @media screen and (min-width: 40em) {
+.no-js .top-bar {
+	display: block;
+}
+.no-js .title-bar {
+	display: none;
+}
+}
+.title-bar {
+	background-color: #044269;
+}
+.top-bar {
+	background-color: #044269;
+	padding: 0px;
+}
+.top-bar ul {
+	background-color: #044269;
+}
+.top-bar li {
+}
+.top-bar li a {
+	color: #FFFFFF;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 1.0rem;
+}
+.top-bar li a:hover {
+	color: #000000;
+	background: #FFFFFF none repeat scroll 0 0;
+}
+.menuitem:hover {}
+.sepa_usermessage {
+	display: none;
+	position: absolute;
+	bottom: 0px;
+	z-index: 50;
+	background-color: #ffffff;
+	padding: 2rem;
+	border: solid 1px #044269;
+}
+#user_message {
+	font-weight: bold
+}
+#user_message .sepa_error {
+	color: #fc0404;
+}
+#user_message .sepa_warning {
+	color: #044269;
+}
+#user_message .sepa_information {
+	color: #044269;
+}
+.sepa_footer {
+	background-color: #2e2e2e;
+    color: #ffffff;
+}
+
+.copyright {
+	background-color: #2e2e2e;
+}
+.sepa_hyperlinks {
+	padding: 0.5rem;
+}
+.sepa_footer a {
+	color: #ffffff;
+	font-size: 1.0rem;
+	padding-right: 0.3rem;
+}
+.sepa_footer a:hover {
+	color: #2199e8;
+}
+.sepa_footer i {
+}
+@media screen and (max-width: 39.9375em) {
+.sepa_footer {
+	font-size: 80%;
+}
+.sepa_footer a {
+	font-size: 0.7rem;
+}
+.sepa_footer i {
+	font-size: 1.1rem;
+}
+}
+@media screen and (min-width: 40em) {
+.sepa_footer {
+	font-size: 80%;
+}
+.sepa_footer a {
+	font-size: 0.7rem;
+}
+.sepa_footer i {
+	font-size: 1.2rem;
+}
+}
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+.sepa_footer {
+	font-size: 90%;
+}
+.sepa_footer a {
+	font-size: 0.7rem;
+}
+.sepa_footer i {
+	font-size: 1.2rem;
+}
+}
+@media screen and (min-width: 64em) {
+.sepa_footer {
+	font-size: 0.85rem;
+}
+.sepa_footer a {
+	font-size: 1.0rem;
+}
+.sepa_footer i {
+	font-size: 1.6rem;
+}
+}
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+.sepa_footer {
+	font-size: 1.0rem;
+}
+.sepa_footer a {
+	font-size: 1.0rem;
+}
+.sepa_footer i {
+	font-size: 1.6rem;
+}
+}
+.esriSimpleSliderTL {
+}
+.esriSimpleSlider {
+	background-color: #1779ba;
+	color: #ffffff;
+}
+.esriSimpleSliderIncrementButton:hover {
+	background-color: #126195;
+}
+.esriSimpleSliderDecrementButton:hover {
+	background-color: #126195;
+}
+.tooltip{color:#333;}
+.tooltip_sepa {
+	padding-left: 0.75rem;
+	border-radius: 0.5rem;
+	background-color: #dbedc4;
+	border: 2px solid #8CC543;
+	color: #044269;
+	font-size: 90%;
+	max-width: 14rem;
+	max-height: 30rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.tooltip_sepa .button {
+	margin: 0rem;
+	padding: 0.3rem;
+}
+.sepa_tooltip_content {
+}
+.has-tip {
+	font-weight: normal;
+	cursor: default;
+	border-bottom: 0px dotted #8a8a8a;
+}
+.tooltip.right:before {
+	border-color: transparent #8CC543 transparent transparent;
+}
+.tooltip.left:before {
+	border-color: transparent transparent transparent #8CC543;
+}
+.tooltip.top:before {
+	border-color: #8CC543 transparent transparent;
+}
+.tooltip:before {
+	border-color: transparent transparent #8CC543;
+}
+.Scalebar_wrapper {
+	background-color: #ffffff;
+	z-index: 20;
+	border-radius: 5px;
+	/*bottom: 30px;*/
+	right: 3rem;
+	position: absolute;
+	width: 10rem;
+	height: 3rem;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+#mapDiv_zoom_slider {
+	position: absolute;
+}
+.transparency_slider_container {
+	overflow: hidden;
+	position: absolute;
+	bottom: 30%;
+	z-index: 51;
+	background-color: Black;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+.transparency_slider_container .close-button {
+	color: #ffffff;
+}
+.transparency_slider_container .slider {
+	margin-top: 1.2rem;
+	margin-bottom: 1.2rem;
+}
+.transparency_slider_container .input-group {
+	height: 1.0rem;
+	margin-top: 0.5rem;
+	padding: 0rem;
+}
+.transparency_slider {
+	color: #ffffff;
+}
+@media screen and (max-width: 39.9375em) {
+    .reveal {
+        padding: 0.2rem;
+        top: 0px;
+        overflow: hidden;
+    }
+
+    .reveal-overlay {
+        overflow: hidden;
+    }
+}
+@media screen and (min-width: 40em) {
+    .reveal-overlay {
+        overflow: hidden;
+    }
+
+    .reveal {
+        padding: 1.0rem;
+        top: 10px;
+        overflow: hidden;
+    }
+}
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    .reveal-overlay {
+        overflow: hidden;
+    }
+
+    .reveal {
+        padding: 0.2rem;
+        top: 0px;
+        overflow: hidden;
+    }
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+
+    .reveal {
+        padding: 0rem;
+        top: 10px;
+        overflow: hidden;
+    }
+
+    .reveal-overlay {
+        overflow: hidden;
+    }
+}
+
+/* Large only */
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+    .reveal {
+        padding: 0rem;
+        top: 10px;
+        overflow: hidden;
+    }
+
+    .reveal-overlay {
+        overflow: hidden;
+    }
+}
+
+.reveal .columns {
+}
+.tooltip_results {
+	margin-left: 0.3rem;
+	cursor: pointer;
+}
+
+.identifyResults_wrapper {
+	width: 100%;
+	overflow: auto;
+}
+
+.map_icon_wrapper {
+	top: 50px !important;
+}
+#mapDiv_zoom_slider.esriSimpleSlider.esriSimpleSliderVertical.esriSimpleSliderBR {
+	bottom: 10px !important;
+    right: 0.96em !important;
+}
+.scalebar_bottom-right.esriScalebar {
+	/*bottom: 60px !important;
+    right: 11.8rem !important;*/
+}
+@media (min-width:992px) {
+.content_pin {
+    font-size: 1rem;
+    right: 2.8rem;
+}
+}
+@media only screen and (max-width: 670px) and (orientation : landscape) {
+.scalebar_bottom-right.esriScalebar {
+	/*bottom: 80px !important;*/
+}
+}
+@media only screen and (max-width: 400px) and (orientation : portrait) {
+.scalebar_bottom-right.esriScalebar {
+	/*bottom: 100px !important;*/
+}
+.small-11 {
+    width: 92.1%;
+}
+.left_nav .tabs-title a {
+	padding: 0.5rem;
+}
+}
+
